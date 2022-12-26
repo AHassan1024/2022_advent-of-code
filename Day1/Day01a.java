@@ -10,12 +10,9 @@ import java.util.List;
 
 public class Day01a {
 
-  public static int calorieCount = 0;
-  public static List<Integer> caloriesList = new ArrayList<>();
-
   private static final String FILENAME = "/Users/main/Git_Projects/2022_advent-of-code/Day1/day01a/input.txt";
 
-  public static void main(String[] pArgs) throws IOException {
+  public static void main(String[] args) throws IOException {
 
     File file = new File(FILENAME);
 
