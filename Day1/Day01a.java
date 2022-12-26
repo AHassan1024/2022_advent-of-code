@@ -1,3 +1,5 @@
+package Day1;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -11,7 +13,7 @@ public class Day01a {
   public static int calorieCount = 0;
   public static List<Integer> caloriesList = new ArrayList<>();
 
-  private static final String FILENAME = "/Users/main/Git_Projects/2022_advent-of-code/day01a/input.txt";
+  private static final String FILENAME = "/Users/main/Git_Projects/2022_advent-of-code/Day1/day01a/input.txt";
 
   public static void main(String[] pArgs) throws IOException {
 
