@@ -9,6 +9,50 @@ public class Day02a {
 
   private static final String FILENAME = "/Users/main/Git_Projects/2022_advent-of-code/Day2/day02a/input.txt";
 
+  public static Move ifOppThenYouMove(Move opp) {
+    switch (opp) {
+      case ROCK:
+        return Move.PAPER;
+      case PAPER:
+        return Move.SCISSORS;
+      case SCISSORS:
+        return Move.ROCK;
+      default:
+        // Error - not a valid move.
+        // Next best move is return the same move as opponent.
+        return opp;
+    }
+  }
+
+  public static int points(Move opp, Move you) {
+    // Calculate the points scored in this round
+    int outcome;
+    if (opp == you) {
+      // draw
+      outcome = 3;
+    } else if (you == ifOppThenYouMove(opp)) {
+      // you win
+      outcome = 6;
+    } else {
+      // you lose
+      outcome = 0;
+    }
+
+    // shape you selected + outcome of the round
+    return you.score() + outcome;
+  }
+
+  public static Move createMove(char moveChar) {
+    switch (moveChar) {
+      case 'A', 'X':
+        return Move.ROCK;
+      case 'B', 'Y':
+        return Move.PAPER;
+      default:
+        return Move.SCISSORS;
+    }
+  }
+
   public static void main(String[] args) {
 
     File file = new File(FILENAME);
@@ -16,6 +60,7 @@ public class Day02a {
     // Use a buffered reader to read each round invididually.
 
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+      int sum = 0;
 
       while (true) {
         String round = bufferedReader.readLine();
@@ -24,8 +69,21 @@ public class Day02a {
           // EOF!
           break;
         }
+        if (round.length() != 3) {
+          // Round is not in the correct format
+          break;
+        }
+
+        Move oppMove = Move.ROCK;
+        Move youMove = Move.ROCK;
 
         // we now start the rounds ...
+        // split round = moveChar1 + " " + moveChar2
+        oppMove = createMove(round.charAt(0));
+        youMove = createMove(round.charAt(2));
+
+        sum += points(oppMove, youMove);
+        System.out.println("SUM: " + sum);
 
       }
 
