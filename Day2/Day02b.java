@@ -1,5 +1,10 @@
 package Day2;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Day02b {
 
   private static final String FILENAME = "/Users/main/Git_Projects/2022_advent-of-code/Day2/day02a/input.txt";
@@ -17,10 +22,6 @@ public class Day02b {
         // Next best move is return the same move as opponent.
         return opp;
     }
-  }
-
-  public static Move toDraw(Move opp) {
-    return opp;
   }
 
   public static Move toLose(Move opp) {
@@ -58,13 +59,27 @@ public class Day02b {
 
   public static Move createMove(char moveChar) {
     switch (moveChar) {
-      case 'A', 'X':
+      case 'A':
         return Move.ROCK;
-      case 'B', 'Y':
+      case 'B':
         return Move.PAPER;
+      case 'C':
       default:
         return Move.SCISSORS;
     }
+  }
+
+  public static Move findYourMove(Move oppMove, char outcome) {
+    switch (outcome) {
+      case 'X':
+        return toLose(oppMove);
+      case 'Z':
+        return toWin(oppMove);
+      case 'Y':
+      default:
+        return oppMove;
+    }
+
   }
 
   public static void main(String[] args) {
@@ -90,7 +105,7 @@ public class Day02b {
         // we now start the rounds ...
         // split round = moveChar1 + " " + moveChar2
         Move oppMove = createMove(round.charAt(0));
-        Move youMove = createMove(round.charAt(2));
+        Move youMove = findYourMove(oppMove, round.charAt(2));
 
         sum += points(oppMove, youMove);
         System.out.println("SUM: " + sum);
