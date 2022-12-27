@@ -64,7 +64,6 @@ public class Day02a {
 
       while (true) {
         String round = bufferedReader.readLine();
-        // new object round with two moves?
         if (round == null) {
           // EOF!
           break;
@@ -74,13 +73,10 @@ public class Day02a {
           break;
         }
 
-        Move oppMove = Move.ROCK;
-        Move youMove = Move.ROCK;
-
         // we now start the rounds ...
         // split round = moveChar1 + " " + moveChar2
-        oppMove = createMove(round.charAt(0));
-        youMove = createMove(round.charAt(2));
+        Move oppMove = createMove(round.charAt(0));
+        Move youMove = createMove(round.charAt(2));
 
         sum += points(oppMove, youMove);
         System.out.println("SUM: " + sum);
