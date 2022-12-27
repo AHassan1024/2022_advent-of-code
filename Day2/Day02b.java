@@ -19,6 +19,25 @@ public class Day02b {
     }
   }
 
+  public static Move toDraw(Move opp) {
+    return opp;
+  }
+
+  public static Move toLose(Move opp) {
+    switch (opp) {
+      case ROCK:
+        return Move.SCISSORS;
+      case PAPER:
+        return Move.ROCK;
+      case SCISSORS:
+        return Move.PAPER;
+      default:
+        // Error - not a valid move.
+        // Next best move is return the same move as opponent.
+        return opp;
+    }
+  }
+
   public static int points(Move opp, Move you) {
     // Calculate the points scored in this round
     int outcome;
