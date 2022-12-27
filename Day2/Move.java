@@ -5,22 +5,53 @@ public enum Move {
   PAPER("B", "Y", 2),
   SCISSORS("C", "Z", 3);
 
-  private final String oppMoveString;
-  private final String youMoveString;
+  private final char oppMovechar;
+  private final char youMovechar;
   private final int score;
 
-  Move(String oppMoveString, String youMoveString, int score) {
-    this.oppMoveString = oppMoveString;
-    this.youMoveString = youMoveString;
+  Move(char oppMovechar, char youMovechar, int score) {
+    this.oppMovechar = oppMovechar;
+    this.youMovechar = youMovechar;
     this.score = score;
   }
 
-  private String oppMoveString() {
-    return oppMoveString;
+  private int points(Move opp, Move you) {
+    // Calculate the points scored in this round
+    int outcome;
+    if (opp == you) {
+      // draw
+      outcome = 3;
+    } else if (you == ifOppThenYouMove(opp)) {
+      // you win
+      outcome = 6;
+    } else {
+      // you lose
+      outcome = 0;
+    }
+
+    // shape you selected + outcome of the round
+    return you.score + outcome;
   }
 
-  private String youMoveString() {
-    return youMoveString;
+  private Move toMove(char in) {
+    switch (in) {
+      case 'A', 'X':
+        return ROCK;
+      case 'B', 'Y':
+        return PAPER;
+      case 'C', 'Z':
+        return SCISSORS;
+      default:
+        break;
+    }
+  }
+
+  private char oppMovechar() {
+    return oppMovechar;
+  }
+
+  private char youMovechar() {
+    return youMovechar;
   }
 
   private int score() {
