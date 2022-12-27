@@ -33,19 +33,6 @@ public enum Move {
     return you.score + outcome;
   }
 
-  private Move toMove(char in) {
-    switch (in) {
-      case 'A', 'X':
-        return ROCK;
-      case 'B', 'Y':
-        return PAPER;
-      case 'C', 'Z':
-        return SCISSORS;
-      default:
-        break;
-    }
-  }
-
   private char oppMovechar() {
     return oppMovechar;
   }
