@@ -43,9 +43,9 @@ public class Day04b {
         // within the longer one using amIContained method
 
         // Create summand
-        pairs += (amIContained(elf1, elf2)) ? 1 : 0;
+        pairs += (doIOverlap(elf1, elf2)) ? 1 : 0;
       }
-      System.out.println("Total fully contained pairs = " + pairs);
+      System.out.println("Total overlapping pairs = " + pairs);
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -55,7 +55,7 @@ public class Day04b {
 
   /**
    * Given both List assignments, return whether one contains the other
-   * E.g. "2-4", returns assignment1 as {2, 3, 4}
+   * E.g. {2, 3, 4}, {2}, returns true
    */
   private static boolean amIContained(List<Integer> elf1, List<Integer> elf2) {
     List<Integer> iterate = (elf1.size() < elf2.size()) ? elf1 : elf2;
@@ -66,6 +66,21 @@ public class Day04b {
       contains = contains && other.contains(i);
     }
     return contains;
+  }
+
+  /**
+   * Given both List assignments, return whether one overlaps with the other
+   * E.g. {2, 3, 4}, {4, 5}, returns true
+   */
+  private static boolean doIOverlap(List<Integer> elf1, List<Integer> elf2) {
+    List<Integer> iterate = (elf1.size() < elf2.size()) ? elf1 : elf2;
+    List<Integer> other = (iterate.equals(elf2)) ? elf1 : elf2;
+    boolean overlaps = false;
+    for (Integer i : iterate) {
+      // Show true if any Integer is in the longer one
+      overlaps = other.contains(i) || overlaps;
+    }
+    return overlaps;
   }
 
   /**
