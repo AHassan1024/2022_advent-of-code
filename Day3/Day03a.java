@@ -44,17 +44,17 @@ public class Day03a {
 
         int container_length = line.length() / 2;
         // We can now create a Rucksack
+        // Break down each line into a Rucksack, with two String containers
         Rucksack rucksack = new Rucksack(line.substring(0, container_length), line.substring(container_length));
 
-        // sum += points(oppMove, youMove);
-        // System.out.println("SUM: " + sum);
+        // Compare the two container strings to create a priority character
         String misplacedItems = rucksack.misplacedItems();
-        System.out.println(rucksack + "has misplaced: " + misplacedItems);
 
-        // for (int i = 0; i < misplacedItems.length(); i++) {
-        // sum += getPriority(misplacedItems.charAt(i));
-        // }
+        // Uncomment below to check Rucksack contents.
+        // System.out.println(rucksack + "has misplaced: " + misplacedItems);
 
+        // Convert each priority character into int
+        // Sum the priorities
         sum += getPriority(misplacedItems.charAt(0));
       }
       System.out.println("Total priorities = " + sum);
@@ -62,12 +62,6 @@ public class Day03a {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-    // Break down each line into a Rucksack, with two String containers
-    // Create a List of Rucksacks
-    // Compare the two container strings to create a priority character
-    // convert each priority character into int
-    // sum the priorities
 
   }
 
