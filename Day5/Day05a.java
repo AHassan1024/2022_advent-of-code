@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.LinkedList;
-import java.util.Stack;
 
 public class Day05a {
 
@@ -43,7 +41,7 @@ public class Day05a {
           // Initialise the Stacks here.
           if (line.contains("[")) {
             // This line contains crates.
-            int curr_stack = 0;
+            int currStack = 0;
             for (int i = 1; i < line.length(); i += 4) {
               if (line.charAt(i) == ' ') {
                 // There are no crates in this position.
@@ -51,10 +49,10 @@ public class Day05a {
 
               } else if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ".contains(line.substring(i, i + 1))) {
                 // Add these crates to the LinkedLists.
-                cratesInEachStack[curr_stack].add(line.charAt(i));
+                cratesInEachStack[currStack].add(line.charAt(i));
               }
               // Every 4th char is either a \s, or an [A-Z] character.
-              curr_stack++;
+              currStack++;
             }
           }
           // Stacks have been initialised
