@@ -11,7 +11,7 @@ Problems from 2022's Advent of Code, for fun. I don't plan on being able to catc
 | Day 03  | b | [x] | 28th Dec 2022 |
 | Day 04  | a | [x] | 28th Dec 2022 |
 | Day 04  | b | [x] | 28th Dec 2022 |
-| Day 05  | a | [] | |
+| Day 05  | a | [x] | 28th Dec 2022|
 | Day 05  | b | [] | |
 | Day 06  | a | [] | |
 | Day 06  | b | [] | |
