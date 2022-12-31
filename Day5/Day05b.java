@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class Day05a {
+public class Day05b {
 
   private static final String FILENAME = "/Users/main/Git_Projects/2022_advent-of-code/Day5/src/input.txt";
 
@@ -93,11 +93,8 @@ public class Day05a {
           // current[4] = "to",
           // current[5] = "1"
 
-          // Iterating over each crate that needs moving:
-          for (int i = 0; i < Integer.parseInt(current[1]); i++) {
-            // Now moving a crate fromStack toStack from the cratesInEachStack
-            move(Integer.parseInt(current[3]), Integer.parseInt(current[5]), cratesInEachStack);
-          }
+          move(Integer.parseInt(current[1]), Integer.parseInt(current[3]), Integer.parseInt(current[5]),
+              cratesInEachStack);
         } // Now, each instruction has been fulfilled.
 
         // Finally, let's create a string with the top crate of each stack:
@@ -114,8 +111,20 @@ public class Day05a {
 
   }
 
-  private static void move(int fromStack, int toStack, LinkedList[] cratesInEachStack) {
-    char crate = (Character) cratesInEachStack[fromStack - 1].poll();
-    cratesInEachStack[toStack - 1].addFirst(crate);
+  private static void move(int many, int fromStack, int toStack, LinkedList<Character>[] cratesInEachStack) {
+    LinkedList<Character> crates = new LinkedList<>();
+    // Populates the crates that need moving, e.g. crates = {(C) -> (M)}
+    for (int i = 0; i < many; i++) {
+      // Retrieve the head, and remove from the stack
+      char crate = (Character) cratesInEachStack[fromStack - 1].poll();
+      // add to the tail of the LinkedList
+      crates.add(crate);
+    }
+
+    LinkedList<Character> moveToStack = (LinkedList<Character>) cratesInEachStack[toStack - 1];
+
+    crates.addAll(moveToStack);
+    cratesInEachStack[toStack - 1] = crates;
+
   }
 }
