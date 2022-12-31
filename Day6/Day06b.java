@@ -9,6 +9,8 @@ public class Day06b {
 
   private static final String FILENAME = "/Users/main/Git_Projects/2022_advent-of-code/Day6/src/input.txt";
 
+  private static final int PACKET = 14;
+
   public static void main(String[] args) {
     // Read each line in the input.txt file
 
@@ -17,24 +19,21 @@ public class Day06b {
     // Use a buffered reader to read each round invididually.
 
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-      int sum = 0;
+      String inputString = bufferedReader.readLine();
 
-      // We are iterating over
-      while (true) {
-        String line = bufferedReader.readLine();
-        if (line == null) {
-          // EOF!
+      for (int i = 0, j = PACKET; j < inputString.length(); i++, j++) {
+        if (allDifferent(inputString.substring(i, j))) {
+          System.out.println(j);
           break;
         }
-
-        // Create objects, if needed
-
-        // Create in-between structures and use helper methods
-
-        // Create summand
-        // sum += ...;
       }
-      System.out.println("Total sum = " + sum);
+      // System.out.println(i);
+
+      // Create objects, if needed
+
+      // Create in-between structures and use helper methods
+
+      // System.out.println("Total sum = " + sum);
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -42,32 +41,7 @@ public class Day06b {
 
   }
 
-  public static boolean allDifferent(char[] lastFour) {
-    //
-    String s = Arrays.toString(lastFour);
-    int i = 0;
-    int j = s.length() - 1;
-
-    boolean flag = true;
-
-    while (true) {
-      if (i == s.length() - 1)
-        break;
-      // DUPLICATE FOUND
-      if (i != j && s.charAt(i) == s.charAt(j)) {
-        flag = false;
-        break;
-      } else {
-        j--;
-        // COMPARING DONE AGAINST i-TH CHAR TO ALL OTHER CHARS, INCREMENT i NOW
-        if (j == 0) {
-          j = s.length() - 1;
-          i += 1;
-        }
-      }
-    }
-
-    return flag;
+  private static boolean allDifferent(String four) {
+    return (four.chars().distinct().count() == four.length());
   }
-
 }
